@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Memories Studio | Where Creativity Meets Memories</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts: Cinzel (Serif) & Montserrat (Sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: '#f6d365',
+              400: '#dfb13d',
+              500: '#c59b27',
+              600: '#a37a18',
+            },
+            dark: {
+              950: '#040405',
+              900: '#070708',
+              850: '#0c0c0e',
+              800: '#141418',
+              750: '#1a1a20',
+              700: '#22222a',
+            }
+          },
+          fontFamily: {
+            serif: ['Cinzel', 'serif'],
+            sans: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body { background-color: #070708; color: #e2e8f0; font-family: 'Montserrat', sans-serif; }
+    .gold-gradient-btn {
+      background: linear-gradient(135deg, #dfb13d 0%, #c59b27 50%, #997312 100%);
+      color: #070708;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .gold-gradient-btn:hover { filter: brightness(1.15); transform: translateY(-1px); }
+    .gold-border-btn {
+      border: 1px solid rgba(223, 177, 61, 0.7);
+      color: #dfb13d;
+      transition: all 0.3s ease;
+    }
+    .gold-border-btn:hover { background: rgba(223, 177, 61, 0.15); border-color: #f6d365; }
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #fce8a6 0%, #dfb13d 50%, #a87e1c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba(223, 177, 61, 0.75) 0%, rgba(223, 177, 61, 0.15) 75%, transparent 100%);
+    }
+    .hero-container {
+      background: linear-gradient(180deg, rgba(7,7,8,0.25) 0%, rgba(7,7,8,0.65) 55%, #070708 100%),
+                  radial-gradient(circle at center, rgba(7,7,8,0.15) 0%, rgba(7,7,8,0.85) 85%),
+                  url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2200&q=85');
+      background-position: center 30%;
+      background-size: cover;
+    }
+    .page-view { display: none; }
+    .page-view.active-page { display: block; animation: pageFade 0.35s ease; }
+    @keyframes pageFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body class="selection:bg-gold-500 selection:text-black">
+
+  <!-- UNMUTE AUDIO PILL (Exact Top-Left of Mockup) -->
+  <div class="fixed top-20 left-4 z-40 hidden sm:block">
+    <button onclick="toggleAudio()" class="flex items-center gap-2 bg-black/70 backdrop-blur-md border border-white/10 text-gray-300 hover:text-gold-400 px-3.5 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-semibold shadow-lg transition">
+      <i class="fa-solid fa-volume-xmark text-xs" id="audio-icon"></i>
+      <span id="audio-label">UNMUTE</span>
+    </button>
+  </div>
+
+  <!-- RIGHT FLOATING SOCIAL ICONS & PAGINATION DOTS (Exact Mockup) -->
+  <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col items-center gap-3 bg-black/60 backdrop-blur-md p-2.5 rounded-full border border-white/10 shadow-2xl">
+    <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-black flex items-center justify-center transition text-xs"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-black flex items-center justify-center transition text-xs"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-black flex items-center justify-center transition text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+    <a href="https://wa.me/918806567350" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition text-xs"><i class="fa-brands fa-whatsapp"></i></a>
+    <!-- 5 Dots -->
+    <div class="w-1.5 h-1.5 rounded-full bg-gold-400 mt-2"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-gray-500"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-gray-600"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-gray-700"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-gray-800"></div>
+  </div>
+
+  <!-- HEADER BAR (Exact Mockup Match) -->
+  <header class="sticky top-0 z-50 bg-[#070708]/95 backdrop-blur-md border-b border-white/10 px-4 md:px-8 py-3">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      
+      <!-- Brand Logo (Infinity + Shutter + Sparkle + Exact Typography) -->
+      <a href="javascript:void(0)" onclick="navigateTo('page-home')" class="flex items-center gap-3 group">
+        <svg class="h-10 w-auto group-hover:scale-105 transition-transform" viewBox="0 0 120 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="inf_g2" x1="5" y1="8" x2="110" y2="46" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#0e3a59"/>
+              <stop offset="30%" stop-color="#126894"/>
+              <stop offset="60%" stop-color="#1992b8"/>
+              <stop offset="85%" stop-color="#e0a32e"/>
+              <stop offset="100%" stop-color="#f6d365"/>
+            </linearGradient>
+            <linearGradient id="apert_g2" x1="18" y1="16" x2="38" y2="36" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#f6d365"/>
+              <stop offset="100%" stop-color="#c59b27"/>
+            </linearGradient>
+          </defs>
+          <path d="M30 11 C 14 11 6 21 6 29 C 6 37 14 45 28 45 C 42 45 51 31 55 26 C 59 21 68 11 84 11 C 98 11 106 20 106 28 C 106 36 98 44 84 44 C 68 44 59 30 55 26 C 51 22 42 11 30 11 Z" 
+                stroke="url(#inf_g2)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="28" cy="28" r="7.5" fill="none" stroke="url(#apert_g2)" stroke-width="1.8"/>
+          <polygon points="28,21 34,25 31,34 22,34 21,25" fill="#c59b27" opacity="0.4"/>
+          <path d="M102 7 Q102 12 97 12 Q102 12 102 17 Q102 12 107 12 Q102 12 102 7 Z" fill="#f6d365"/>
+        </svg>
+
+        <div class="leading-tight">
+          <div class="font-serif text-base md:text-lg font-bold uppercase tracking-wider text-white">
+            Creative <span class="text-gold-400">Memories</span>
+          </div>
+          <div class="text-[8.5px] tracking-[0.38em] text-gray-300 font-bold uppercase -mt-0.5">S T U D I O</div>
+        </div>
+      </a>
+
+      <!-- Center Nav Links: HOME | PORTFOLIO | FILMS | REELS | SERVICES | ABOUT | BLOG | CONTACT -->
+      <nav class="hidden xl:flex items-center space-x-6 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-300">
+        <button onclick="navigateTo('page-home')" id="nav-page-home" class="nav-item text-gold-400 border-b border-gold-400 pb-0.5">HOME</button>
+        <button onclick="navigateTo('page-portfolio')" id="nav-page-portfolio" class="nav-item hover:text-gold-400 transition">PORTFOLIO</button>
+        <button onclick="navigateTo('page-films')" id="nav-page-films" class="nav-item hover:text-gold-400 transition">FILMS</button>
+        <button onclick="navigateTo('page-reels')" id="nav-page-reels" class="nav-item hover:text-gold-400 transition">REELS</button>
+        <button onclick="navigateTo('page-services')" id="nav-page-services" class="nav-item hover:text-gold-400 transition">SERVICES</button>
+        <button onclick="navigateTo('page-about')" id="nav-page-about" class="nav-item hover:text-gold-400 transition">ABOUT</button>
+        <button onclick="navigateTo('page-categories100')" id="nav-page-categories100" class="nav-item hover:text-gold-400 transition">BLOG</button>
+        <button onclick="navigateTo('page-contact')" id="nav-page-contact" class="nav-item hover:text-gold-400 transition">CONTACT</button>
+      </nav>
+
+      <!-- Right CTAs: [BOOK NOW] & [CLIENT LOGIN] -->
+      <div class="flex items-center gap-3">
+        <button onclick="navigateTo('page-booking')" class="gold-gradient-btn text-xs tracking-wider uppercase px-4 py-2 rounded shadow flex items-center gap-2">
+          <i class="fa-regular fa-calendar-check text-xs"></i> <span>BOOK NOW</span>
+        </button>
+        <button onclick="navigateTo('page-proofing')" class="border border-white/20 hover:border-gold-400 text-gray-200 text-xs tracking-wider uppercase px-3.5 py-2 rounded hidden sm:flex items-center gap-1.5 transition">
+          <i class="fa-regular fa-user text-xs"></i> <span>CLIENT LOGIN</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================== -->
+  <!-- PAGE 1: EXACT HOME PAGE (MOCKUP 1-TO-1 MATCH)             -->
+  <!-- ======================================================== -->
+  <main id="page-home" class="page-view active-page">
+    
+    <!-- Hero Section -->
+    <section class="relative min-h-[95vh] flex flex-col justify-center items-center text-center px-4 hero-container overflow-hidden">
+      <div class="max-w-4xl mx-auto space-y-6 pt-12">
+        <div class="inline-block space-y-1">
+          <p class="text-[11px] md:text-xs tracking-[0.42em] text-gold-400 font-bold uppercase">CAPTURING MOMENTS</p>
+          <p class="text-[10px] md:text-[11px] tracking-[0.34em] text-gray-300 font-medium uppercase">CREATING MEMORIES</p>
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-[0.08em] text-white uppercase leading-tight drop-shadow-2xl">
+          CREATIVE <br>
+          <span class="gold-text-gradient">MEMORIES</span>
+        </h1>
+
+        <div class="flex items-center justify-center gap-3 py-1">
+          <span class="h-[1px] w-12 bg-gold-500/70"></span>
+          <span class="text-[11px] tracking-[0.45em] text-gold-400 font-bold uppercase">S T U D I O</span>
+          <span class="h-[1px] w-12 bg-gold-500/70"></span>
+        </div>
+
+        <p class="font-serif italic text-base sm:text-lg md:text-xl text-gray-300 max-w-xl mx-auto font-normal">
+          Where Creativity Meets Memories
+        </p>
+
+        <!-- Hero Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-3">
+          <button onclick="navigateTo('page-booking')" class="gold-gradient-btn text-xs tracking-[0.16em] uppercase px-7 py-3 rounded shadow-xl flex items-center gap-2">
+            <i class="fa-solid fa-calendar-days text-xs"></i> BOOK YOUR SHOOT
+          </button>
+          <button onclick="navigateTo('page-portfolio')" class="bg-black/40 backdrop-blur-sm border border-gold-400 text-gold-300 hover:bg-gold-500 hover:text-black text-xs tracking-[0.16em] uppercase px-7 py-3 rounded transition flex items-center gap-2">
+            <i class="fa-regular fa-circle-play text-xs"></i> VIEW PORTFOLIO
+          </button>
+        </div>
+      </div>
+
+      <!-- Mouse Scroll Icon -->
+      <a href="#featured-portfolio" class="mt-14 mb-4 flex flex-col items-center gap-2 text-gray-400 hover:text-gold-400 transition">
+        <div class="w-5 h-8 rounded-full border-2 border-gray-400 flex items-start justify-center p-1">
+          <div class="w-1 h-2 bg-gold-400 rounded-full animate-bounce"></div>
+        </div>
+        <span class="text-[9px] tracking-[0.25em] uppercase font-semibold">SCROLL DOWN</span>
+      </a>
+    </section>
+
+    <!-- SECTION 1: FEATURED PORTFOLIO (Exact 6 Cards) -->
+    <section id="featured-portfolio" class="py-16 px-4 md:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-4 mb-8">
+        <h2 class="font-serif text-lg md:text-xl font-bold tracking-[0.18em] text-white uppercase whitespace-nowrap">FEATURED PORTFOLIO</h2>
+        <div class="gold-divider flex-grow"></div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5">
+        <div onclick="navigateTo('page-portfolio')" class="group relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Wedding" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <p class="absolute bottom-3 inset-x-0 text-center text-[11px] font-bold tracking-[0.2em] uppercase text-white group-hover:text-gold-400 transition">WEDDING</p>
+        </div>
+
+        <div onclick="navigateTo('page-films')" class="group relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1579632652768-6cb9dcf85912?auto=format&fit=crop&w=600&q=80" alt="Films" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <p class="absolute bottom-3 inset-x-0 text-center text-[11px] font-bold tracking-[0.2em] uppercase text-white group-hover:text-gold-400 transition">FILMS</p>
+        </div>
+
+        <div onclick="navigateTo('page-portfolio')" class="group relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" alt="Commercial" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <p class="absolute bottom-3 inset-x-0 text-center text-[11px] font-bold tracking-[0.2em] uppercase text-white group-hover:text-gold-400 transition">COMMERCIAL</p>
+        </div>
+
+        <div onclick="navigateTo('page-portfolio')" class="group relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80" alt="Drone" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <p class="absolute bottom-3 inset-x-0 text-center text-[11px] font-bold tracking-[0.2em] uppercase text-white group-hover:text-gold-400 transition">DRONE</p>
+        </div>
+
+        <div onclick="navigateTo('page-portfolio')" class="group relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Portrait" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <p class="absolute bottom-3 inset-x-0 text-center text-[11px] font-bold tracking-[0.2em] uppercase text-white group-hover:text-gold-400 transition">PORTRAIT</p>
+        </div>
+
+        <div onclick="navigateTo('page-portfolio')" class="group relative aspect-[3/4] rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" alt="Travel" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+          <p class="absolute bottom-3 inset-x-0 text-center text-[11px] font-bold tracking-[0.2em] uppercase text-white group-hover:text-gold-400 transition">TRAVEL</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-7">
+        <button onclick="navigateTo('page-portfolio')" class="gold-border-btn text-[11px] font-bold tracking-[0.18em] uppercase px-6 py-2.5 rounded">
+          VIEW ALL PORTFOLIO
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 2: OUR SERVICES (Exact 8 Grid Icons) -->
+    <section class="py-14 px-4 md:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center gap-4 mb-8">
+        <h2 class="font-serif text-lg md:text-xl font-bold tracking-[0.18em] text-white uppercase whitespace-nowrap">OUR SERVICES</h2>
+        <div class="gold-divider flex-grow"></div>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+        <div onclick="navigateTo('page-services')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-camera text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">PHOTOGRAPHY</p>
+        </div>
+        <div onclick="navigateTo('page-services')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-video text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">VIDEOGRAPHY</p>
+        </div>
+        <div onclick="navigateTo('page-films')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-clapperboard text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">FILM PRODUCTION</p>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-mobile-screen text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">REELS & SHORTS</p>
+        </div>
+        <div onclick="navigateTo('page-services')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-wand-magic-sparkles text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">EDITING & POST</p>
+        </div>
+        <div onclick="navigateTo('page-services')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-helicopter text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">DRONE SERVICES</p>
+        </div>
+        <div onclick="navigateTo('page-services')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-pen-nib text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">BRANDING & DESIGN</p>
+        </div>
+        <div onclick="navigateTo('page-services')" class="p-4 bg-dark-850 rounded-lg border border-white/5 hover:border-gold-500/40 text-center flex flex-col items-center justify-center transition group cursor-pointer">
+          <i class="fa-solid fa-globe text-2xl text-gold-400 mb-3 group-hover:scale-110 transition"></i>
+          <p class="text-[10px] font-semibold tracking-wider text-gray-200 uppercase">DIGITAL SOLUTIONS</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-7">
+        <button onclick="navigateTo('page-services')" class="gold-border-btn text-[11px] font-bold tracking-[0.18em] uppercase px-6 py-2.5 rounded">
+          VIEW ALL SERVICES
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED FILMS (Exact Mockup Match) -->
+    <section class="py-14 px-4 md:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4 flex-grow mr-6">
+          <h2 class="font-serif text-lg md:text-xl font-bold tracking-[0.18em] text-white uppercase whitespace-nowrap">FEATURED FILMS</h2>
+          <div class="gold-divider flex-grow"></div>
+        </div>
+        <button onclick="navigateTo('page-films')" class="text-[10px] font-bold tracking-[0.18em] text-gold-400 hover:underline uppercase whitespace-nowrap">VIEW ALL FILMS</button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div onclick="navigateTo('page-films')" class="group relative aspect-video rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80" alt="Wedding Film" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 flex items-center justify-center transition">
+            <div class="w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white group-hover:bg-gold-500 group-hover:text-black transition">
+              <i class="fa-solid fa-play ml-0.5 text-xs"></i>
+            </div>
+          </div>
+          <div class="absolute bottom-3 inset-x-3 text-center">
+            <p class="text-xs font-bold tracking-wider text-white uppercase drop-shadow">THE WEDDING TALE</p>
+            <p class="text-[9px] tracking-widest text-gold-300 uppercase mt-0.5">CINEMATIC WEDDING FILM</p>
+          </div>
+        </div>
+
+        <div onclick="navigateTo('page-films')" class="group relative aspect-video rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80" alt="Eternal Promise" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 flex items-center justify-center transition">
+            <div class="w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white group-hover:bg-gold-500 group-hover:text-black transition">
+              <i class="fa-solid fa-play ml-0.5 text-xs"></i>
+            </div>
+          </div>
+          <div class="absolute bottom-3 inset-x-3 text-center">
+            <p class="text-xs font-bold tracking-wider text-white uppercase drop-shadow">ETERNAL PROMISE</p>
+            <p class="text-[9px] tracking-widest text-gold-300 uppercase mt-0.5">WEDDING FILM</p>
+          </div>
+        </div>
+
+        <div onclick="navigateTo('page-films')" class="group relative aspect-video rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80" alt="Brand Story" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 flex items-center justify-center transition">
+            <div class="w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white group-hover:bg-gold-500 group-hover:text-black transition">
+              <i class="fa-solid fa-play ml-0.5 text-xs"></i>
+            </div>
+          </div>
+          <div class="absolute bottom-3 inset-x-3 text-center">
+            <p class="text-xs font-bold tracking-wider text-white uppercase drop-shadow">BRAND STORY</p>
+            <p class="text-[9px] tracking-widest text-gold-300 uppercase mt-0.5">CORPORATE FILM</p>
+          </div>
+        </div>
+
+        <div onclick="navigateTo('page-films')" class="group relative aspect-video rounded-lg overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" alt="Beyond Boundaries" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 flex items-center justify-center transition">
+            <div class="w-11 h-11 rounded-full bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white group-hover:bg-gold-500 group-hover:text-black transition">
+              <i class="fa-solid fa-play ml-0.5 text-xs"></i>
+            </div>
+          </div>
+          <div class="absolute bottom-3 inset-x-3 text-center">
+            <p class="text-xs font-bold tracking-wider text-white uppercase drop-shadow">BEYOND BOUNDARIES</p>
+            <p class="text-[9px] tracking-widest text-gold-300 uppercase mt-0.5">TRAVEL FILM</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: TRENDING REELS (Exact Mockup Match) -->
+    <section class="py-14 px-4 md:px-8 max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4 flex-grow mr-6">
+          <h2 class="font-serif text-lg md:text-xl font-bold tracking-[0.18em] text-white uppercase whitespace-nowrap">TRENDING REELS</h2>
+          <div class="gold-divider flex-grow"></div>
+        </div>
+        <button onclick="navigateTo('page-reels')" class="text-[10px] font-bold tracking-[0.18em] text-gold-400 hover:underline uppercase whitespace-nowrap">VIEW ALL REELS</button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" alt="Reel 1" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 125K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Reel 2" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 98K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Reel 3" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 210K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Reel 4" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 175K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=400&q=80" alt="Reel 5" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 132K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=400&q=80" alt="Reel 6" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 88K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=400&q=80" alt="Reel 7" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 107K</div>
+        </div>
+        <div onclick="navigateTo('page-reels')" class="group relative aspect-[9/16] rounded-md overflow-hidden border border-white/10 bg-dark-800 cursor-pointer">
+          <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=400&q=80" alt="Reel 8" class="w-full h-full object-cover group-hover:scale-105 transition">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-2 left-2 flex items-center gap-1 text-[10px] font-bold text-white"><i class="fa-solid fa-play text-[8px]"></i> 95K</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: 3 COLUMNS (WHY CHOOSE US | TESTIMONIALS | FOUNDER) -->
+    <section class="py-14 px-4 md:px-8 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Column 1: WHY CHOOSE US -->
+        <div class="bg-dark-850 p-6 rounded-lg border border-white/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-6">
+              <h3 class="font-serif text-sm font-bold tracking-widest text-white uppercase">WHY CHOOSE US</h3>
+              <span class="w-8 h-[1px] bg-gold-400"></span>
+            </div>
+            <div class="space-y-3.5 text-xs text-gray-300">
+              <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i><span>Premium Quality</span></div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i><span>Cinematic Storytelling</span></div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i><span>Professional Team</span></div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i><span>Latest Equipment</span></div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i><span>On-Time Delivery</span></div>
+              <div class="flex items-center gap-3"><i class="fa-solid fa-circle-check text-gold-400"></i><span>Client Satisfaction</span></div>
+            </div>
+          </div>
+          <div class="mt-8">
+            <button onclick="navigateTo('page-about')" class="gold-border-btn text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded">
+              DISCOVER MORE
+            </button>
+          </div>
+        </div>
+
+        <!-- Column 2: CLIENT TESTIMONIALS -->
+        <div class="bg-dark-850 p-6 rounded-lg border border-white/5 text-center flex flex-col justify-between relative">
+          <div class="flex items-center justify-center gap-2 mb-4">
+            <span class="w-6 h-[1px] bg-gold-400"></span>
+            <h3 class="font-serif text-sm font-bold tracking-widest text-white uppercase">CLIENT TESTIMONIALS</h3>
+            <span class="w-6 h-[1px] bg-gold-400"></span>
+          </div>
+          <button onclick="prevReview()" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gold-400 p-1"><i class="fa-solid fa-chevron-left"></i></button>
+          <button onclick="nextReview()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gold-400 p-1"><i class="fa-solid fa-chevron-right"></i></button>
+          <div class="my-auto px-6">
+            <div class="flex justify-center gap-1 text-gold-400 text-xs mb-3">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p id="review-text" class="text-xs text-gray-300 italic leading-relaxed">"Creative Memories Studio has captured our most beautiful moments in the most amazing way. The team is professional, creative and very cooperative. Highly recommended!"</p>
+            <div class="flex items-center justify-center gap-3 mt-4">
+              <img id="review-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" class="w-9 h-9 rounded-full object-cover border border-gold-400/50" alt="Client">
+              <div class="text-left">
+                <p id="review-author" class="text-xs font-bold text-gold-400">Rohit & Sneha</p>
+                <p id="review-tag" class="text-[9px] text-gray-400">Wedding Client</p>
+              </div>
+            </div>
+          </div>
+          <div class="h-6"></div>
+        </div>
+
+        <!-- Column 3: ABOUT FOUNDER -->
+        <div class="bg-dark-850 p-6 rounded-lg border border-white/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <h3 class="font-serif text-sm font-bold tracking-widest text-white uppercase">ABOUT FOUNDER</h3>
+              <span class="w-8 h-[1px] bg-gold-400"></span>
+            </div>
+            <div class="flex items-start gap-4">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=260&q=80" alt="Avinash Ramchandra Sananse" class="w-20 h-28 object-cover rounded border border-gold-400/50 flex-shrink-0 shadow-lg">
+              <div>
+                <h4 class="text-xs md:text-sm font-bold text-gold-400 font-serif">Avinash Ramchandra Sananse</h4>
+                <p class="text-[10px] text-gray-400">Founder & Creative Director</p>
+                <p class="text-[11px] text-gray-300 mt-2 leading-relaxed">A passionate visual storyteller with a dream to turn moments into timeless memories. With years of experience in photography and filmmaking, my mission is to deliver excellence.</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4">
+            <button onclick="navigateTo('page-about')" class="gold-border-btn text-[10px] font-bold tracking-widest uppercase px-4 py-2 rounded">
+              KNOW MORE
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: CTA BANNER (Exact Mockup Match) -->
+    <section class="px-4 md:px-8 max-w-7xl mx-auto py-6">
+      <div class="bg-dark-850 rounded-xl border border-white/10 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-lg bg-gold-500/10 border border-gold-400/40 flex items-center justify-center text-gold-400 text-xl flex-shrink-0">
+            <i class="fa-regular fa-calendar-check"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-lg md:text-xl font-bold tracking-wider text-white uppercase">LET'S CREATE SOMETHING AMAZING TOGETHER</h3>
+            <p class="text-xs text-gray-400 mt-1">Book your session now and let us capture your magic!</p>
+          </div>
+        </div>
+        <button onclick="navigateTo('page-booking')" class="gold-gradient-btn text-xs tracking-wider uppercase px-7 py-3.5 rounded shadow-xl flex items-center gap-2 whitespace-nowrap">
+          <span>BOOK YOUR SHOOT NOW</span>
+          <i class="fa-solid fa-chevron-right text-xs"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 7: CONTACT BAR (Exact 4 Columns from Mockup) -->
+    <section class="py-10 px-4 md:px-8 max-w-7xl mx-auto border-t border-white/5 mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white/5 border border-gold-400/40 flex items-center justify-center text-gold-400 flex-shrink-0"><i class="fa-solid fa-phone"></i></div>
+          <div><a href="tel:+918806567350" class="font-bold text-white hover:text-gold-400">+91 88065 67350</a><p class="text-gray-400 text-[10px]">Call / WhatsApp</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white/5 border border-gold-400/40 flex items-center justify-center text-gold-400 flex-shrink-0"><i class="fa-solid fa-envelope"></i></div>
+          <div><a href="mailto:hello@creativememories.studio" class="font-bold text-white hover:text-gold-400">hello@creativememories.studio</a><p class="text-gray-400 text-[10px]">Drop Us an Email</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white/5 border border-gold-400/40 flex items-center justify-center text-gold-400 flex-shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+          <div><p class="font-bold text-white">Aurangabad, Maharashtra</p><p class="text-gray-400 text-[10px]">India</p></div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-white/5 border border-gold-400/40 flex items-center justify-center text-gold-400 flex-shrink-0"><i class="fa-solid fa-clock"></i></div>
+          <div><p class="font-bold text-white">Mon - Sun : 9AM - 8PM</p><p class="text-gray-400 text-[10px]">We are Open</p></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================== -->
+  <!-- SUB-PAGE 2: DEDICATED PORTFOLIO PAGE                     -->
+  <!-- ======================================================== -->
+  <section id="page-portfolio" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Photography Archive</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Full Portfolio & 15 Categories</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 group cursor-pointer">
+        <div class="aspect-[3/4] relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <span class="absolute bottom-2 left-2 bg-black/80 text-[9px] text-gold-400 px-2 py-0.5 rounded font-bold uppercase">Wedding & Pre-Wedding</span>
+        </div>
+      </div>
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 group cursor-pointer">
+        <div class="aspect-[3/4] relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <span class="absolute bottom-2 left-2 bg-black/80 text-[9px] text-gold-400 px-2 py-0.5 rounded font-bold uppercase">Portrait & Headshots</span>
+        </div>
+      </div>
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 group cursor-pointer">
+        <div class="aspect-[3/4] relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <span class="absolute bottom-2 left-2 bg-black/80 text-[9px] text-gold-400 px-2 py-0.5 rounded font-bold uppercase">Fashion & Editorial</span>
+        </div>
+      </div>
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 group cursor-pointer">
+        <div class="aspect-[3/4] relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <span class="absolute bottom-2 left-2 bg-black/80 text-[9px] text-gold-400 px-2 py-0.5 rounded font-bold uppercase">Commercial & Brand</span>
+        </div>
+      </div>
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 group cursor-pointer">
+        <div class="aspect-[3/4] relative overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+          <span class="absolute bottom-2 left-2 bg-black/80 text-[9px] text-gold-400 px-2 py-0.5 rounded font-bold uppercase">4K Drone Aerial</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 3: DEDICATED FILMS PAGE -->
+  <section id="page-films" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Cinema Productions</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Cinematic Wedding & Brand Films</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 p-2.5 space-y-2">
+        <div class="aspect-video relative rounded-lg overflow-hidden group cursor-pointer" onclick="alert('Playing 4K Video: The Wedding Tale')">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition">
+            <div class="w-10 h-10 rounded-full bg-gold-500 text-black flex items-center justify-center font-bold shadow-lg"><i class="fa-solid fa-play ml-0.5 text-xs"></i></div>
+          </div>
+        </div>
+        <p class="text-xs font-bold text-white uppercase">The Wedding Tale</p>
+        <p class="text-[10px] text-gray-400">Cinematic Film • 4K HDR</p>
+      </div>
+
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 p-2.5 space-y-2">
+        <div class="aspect-video relative rounded-lg overflow-hidden group cursor-pointer" onclick="alert('Playing 4K Video: Eternal Promise')">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition">
+            <div class="w-10 h-10 rounded-full bg-gold-500 text-black flex items-center justify-center font-bold shadow-lg"><i class="fa-solid fa-play ml-0.5 text-xs"></i></div>
+          </div>
+        </div>
+        <p class="text-xs font-bold text-white uppercase">Eternal Promise</p>
+        <p class="text-[10px] text-gray-400">Traditional Film • 4K HDR</p>
+      </div>
+
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 p-2.5 space-y-2">
+        <div class="aspect-video relative rounded-lg overflow-hidden group cursor-pointer" onclick="alert('Playing 4K Video: Brand Story')">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition">
+            <div class="w-10 h-10 rounded-full bg-gold-500 text-black flex items-center justify-center font-bold shadow-lg"><i class="fa-solid fa-play ml-0.5 text-xs"></i></div>
+          </div>
+        </div>
+        <p class="text-xs font-bold text-white uppercase">Brand Story</p>
+        <p class="text-[10px] text-gray-400">Corporate Commercial • 4K</p>
+      </div>
+
+      <div class="bg-dark-850 rounded-xl overflow-hidden border border-white/10 p-2.5 space-y-2">
+        <div class="aspect-video relative rounded-lg overflow-hidden group cursor-pointer" onclick="alert('Playing 4K Video: Beyond Boundaries')">
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-black/40 flex items-center justify-center group-hover:bg-black/20 transition">
+            <div class="w-10 h-10 rounded-full bg-gold-500 text-black flex items-center justify-center font-bold shadow-lg"><i class="fa-solid fa-play ml-0.5 text-xs"></i></div>
+          </div>
+        </div>
+        <p class="text-xs font-bold text-white uppercase">Beyond Boundaries</p>
+        <p class="text-[10px] text-gray-400">Travel Documentary • 4K</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 4: DEDICATED REELS PAGE -->
+  <section id="page-reels" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Viral Formats</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Trending Reels & Social Shorts</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3.5">
+      <div class="aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-dark-850 relative group cursor-pointer" onclick="alert('Playing Reel...')">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-3">
+          <span class="text-xs font-bold text-white"><i class="fa-solid fa-play text-[9px]"></i> 125K Views</span>
+          <span class="text-[10px] text-gold-400">Royal Entry Teaser</span>
+        </div>
+      </div>
+      <div class="aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-dark-850 relative group cursor-pointer" onclick="alert('Playing Reel...')">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-3">
+          <span class="text-xs font-bold text-white"><i class="fa-solid fa-play text-[9px]"></i> 98K Views</span>
+          <span class="text-[10px] text-gold-400">Haldi Yellow Splash</span>
+        </div>
+      </div>
+      <div class="aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-dark-850 relative group cursor-pointer" onclick="alert('Playing Reel...')">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-3">
+          <span class="text-xs font-bold text-white"><i class="fa-solid fa-play text-[9px]"></i> 210K Views</span>
+          <span class="text-[10px] text-gold-400">Pre-Wedding Sunset</span>
+        </div>
+      </div>
+      <div class="aspect-[9/16] rounded-xl overflow-hidden border border-white/10 bg-dark-850 relative group cursor-pointer" onclick="alert('Playing Reel...')">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-3">
+          <span class="text-xs font-bold text-white"><i class="fa-solid fa-play text-[9px]"></i> 175K Views</span>
+          <span class="text-[10px] text-gold-400">Groom Walk</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 5: DEDICATED SERVICES PAGE -->
+  <section id="page-services" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Capabilities</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Our Services & Solutions</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-5 bg-dark-850 rounded-xl border border-white/5 space-y-2">
+        <i class="fa-solid fa-camera text-gold-400 text-2xl mb-1"></i>
+        <h4 class="text-sm font-bold text-white uppercase">Photography</h4>
+        <p class="text-xs text-gray-400">Candid, Traditional, Portraits, Pre-Weddings with Sony Alpha flagship bodies.</p>
+      </div>
+      <div class="p-5 bg-dark-850 rounded-xl border border-white/5 space-y-2">
+        <i class="fa-solid fa-video text-gold-400 text-2xl mb-1"></i>
+        <h4 class="text-sm font-bold text-white uppercase">Videography</h4>
+        <p class="text-xs text-gray-400">Full event documentation, multicam recording, audio mastering & live setups.</p>
+      </div>
+      <div class="p-5 bg-dark-850 rounded-xl border border-white/5 space-y-2">
+        <i class="fa-solid fa-clapperboard text-gold-400 text-2xl mb-1"></i>
+        <h4 class="text-sm font-bold text-white uppercase">Film Production</h4>
+        <p class="text-xs text-gray-400">Short films, Documentaries, Corporate profile films, Commercial advertisements.</p>
+      </div>
+      <div class="p-5 bg-dark-850 rounded-xl border border-white/5 space-y-2">
+        <i class="fa-solid fa-wand-magic-sparkles text-gold-400 text-2xl mb-1"></i>
+        <h4 class="text-sm font-bold text-white uppercase">Editing & Color Grading</h4>
+        <p class="text-xs text-gray-400">DaVinci Resolve color grading, frequency separation retouching, Adobe Premiere Pro.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 6: DEDICATED ABOUT PAGE -->
+  <section id="page-about" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Our Story</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">About Creative Memories Studio</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="bg-dark-850 p-6 md:p-10 rounded-2xl border border-white/10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-4 flex justify-center">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Avinash Sananse" class="w-48 h-64 object-cover rounded-xl border border-gold-400 shadow-2xl">
+      </div>
+      <div class="md:col-span-8 space-y-4 text-xs leading-relaxed text-gray-300">
+        <h3 class="font-serif text-xl font-bold text-white">Avinash Ramchandra Sananse</h3>
+        <p class="text-gold-400 font-semibold uppercase tracking-wider text-[11px]">Founder & Creative Director</p>
+        <p>A passionate visual storyteller with a dream to turn moments into timeless memories. With years of experience in photography and filmmaking, our mission is to deliver uncompromised excellence.</p>
+        <p>Based in Aurangabad (Maharashtra), we operate across India for destination weddings, films, corporate projects, and commercials.</p>
+        <button onclick="navigateTo('page-booking')" class="gold-gradient-btn px-6 py-2.5 rounded font-bold uppercase tracking-wider text-xs">
+          Schedule A Shoot
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 7: DEDICATED CALENDAR & 4-STAGE PAYMENT -->
+  <section id="page-booking" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Smart Date Reservation</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Shoot Calendar & 4-Stage Payment Milestone</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- Calendar View -->
+      <div class="lg:col-span-7 bg-dark-850 border border-white/10 rounded-xl p-6 shadow-2xl">
+        <div class="flex items-center justify-between mb-6">
+          <div>
+            <h3 class="font-serif text-base font-bold text-white tracking-wider uppercase">Live Shoot Calendar</h3>
+            <p class="text-[11px] text-gray-400">Select date to verify crew availability or submit a priority request</p>
+          </div>
+          <div class="flex items-center gap-3 text-[10px] font-semibold">
+            <span class="flex items-center gap-1 text-emerald-400"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Available</span>
+            <span class="flex items-center gap-1 text-amber-400"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Booked (Priority)</span>
+          </div>
+        </div>
+
+        <div class="text-center font-bold text-sm text-gold-400 uppercase tracking-widest mb-4">Upcoming Shoot Slots</div>
+        <div class="grid grid-cols-7 gap-2 text-center text-xs font-semibold text-gray-400 mb-2">
+          <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+        </div>
+
+        <div class="grid grid-cols-7 gap-2 text-xs">
+          <button onclick="selectDate('12th Nov (Available)', false)" class="p-3 rounded-lg bg-dark-800 hover:bg-emerald-500/20 border border-emerald-500/30 text-white transition text-center">
+            <span class="block font-bold">12</span><span class="text-[8px] text-emerald-400 uppercase">Open</span>
+          </button>
+          <button onclick="selectDate('13th Nov (Available)', false)" class="p-3 rounded-lg bg-dark-800 hover:bg-emerald-500/20 border border-emerald-500/30 text-white transition text-center">
+            <span class="block font-bold">13</span><span class="text-[8px] text-emerald-400 uppercase">Open</span>
+          </button>
+          <button onclick="selectDate('14th Nov (Already Booked)', true)" class="p-3 rounded-lg bg-amber-500/10 hover:bg-amber-500/25 border border-amber-500/50 text-white transition text-center relative">
+            <span class="block font-bold text-amber-400">14</span><span class="text-[8px] text-amber-300 font-bold uppercase">Booked</span>
+            <span class="absolute -top-1 -right-1 w-2 h-2 bg-amber-500 rounded-full animate-ping"></span>
+          </button>
+          <button onclick="selectDate('15th Nov (Available)', false)" class="p-3 rounded-lg bg-dark-800 hover:bg-emerald-500/20 border border-emerald-500/30 text-white transition text-center">
+            <span class="block font-bold">15</span><span class="text-[8px] text-emerald-400 uppercase">Open</span>
+          </button>
+          <button onclick="selectDate('16th Nov (Already Booked)', true)" class="p-3 rounded-lg bg-amber-500/10 hover:bg-amber-500/25 border border-amber-500/50 text-white transition text-center relative">
+            <span class="block font-bold text-amber-400">16</span><span class="text-[8px] text-amber-300 font-bold uppercase">Booked</span>
+          </button>
+          <button onclick="selectDate('17th Nov (Available)', false)" class="p-3 rounded-lg bg-dark-800 hover:bg-emerald-500/20 border border-emerald-500/30 text-white transition text-center">
+            <span class="block font-bold">17</span><span class="text-[8px] text-emerald-400 uppercase">Open</span>
+          </button>
+          <button onclick="selectDate('18th Nov (Available)', false)" class="p-3 rounded-lg bg-dark-800 hover:bg-emerald-500/20 border border-emerald-500/30 text-white transition text-center">
+            <span class="block font-bold">18</span><span class="text-[8px] text-emerald-400 uppercase">Open</span>
+          </button>
+        </div>
+
+        <div id="booking-alert-box" class="mt-6 p-4 rounded-lg bg-dark-800 border border-gold-500/30 text-xs hidden">
+          <p id="selected-date-text" class="text-white font-semibold mb-1"></p>
+          <p id="selected-date-msg" class="text-gray-300 text-[11px]"></p>
+        </div>
+      </div>
+
+      <!-- 4-Stage Payment Milestone Card (25% Each) -->
+      <div class="lg:col-span-5 bg-dark-850 border border-white/10 rounded-xl p-6 shadow-2xl flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <h3 class="font-serif text-base font-bold text-white tracking-wider uppercase">4-Stage Milestone Rule</h3>
+            <span class="w-6 h-[1px] bg-gold-400"></span>
+          </div>
+          <p class="text-[11px] text-gray-400 mb-6">Safe and structured 25% installment plan for every shoot</p>
+
+          <div class="space-y-3.5 text-xs">
+            <div class="p-3 rounded-lg bg-dark-800 border border-white/5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-400/40 text-gold-400 flex items-center justify-center font-bold">25%</span>
+                <div>
+                  <p class="text-white font-semibold">Stage 1: Advance Booking</p>
+                  <p class="text-[10px] text-gray-400">Locks date slot & camera crew</p>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-bold text-gold-400 bg-gold-500/10 px-2 py-1 rounded">Stage 1</span>
+            </div>
+
+            <div class="p-3 rounded-lg bg-dark-800 border border-white/5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-400/40 text-gold-400 flex items-center justify-center font-bold">25%</span>
+                <div>
+                  <p class="text-white font-semibold">Stage 2: On Shoot Day</p>
+                  <p class="text-[10px] text-gray-400">Event production start</p>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 px-2 py-1 rounded">Stage 2</span>
+            </div>
+
+            <div class="p-3 rounded-lg bg-dark-800 border border-white/5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-400/40 text-gold-400 flex items-center justify-center font-bold">25%</span>
+                <div>
+                  <p class="text-white font-semibold">Stage 3: Shoot Wrap-up</p>
+                  <p class="text-[10px] text-gray-400">Immediately after pack-up</p>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 px-2 py-1 rounded">Stage 3</span>
+            </div>
+
+            <div class="p-3 rounded-lg bg-dark-800 border border-white/5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-gold-500/10 border border-gold-400/40 text-gold-400 flex items-center justify-center font-bold">25%</span>
+                <div>
+                  <p class="text-white font-semibold">Stage 4: Final Handover</p>
+                  <p class="text-[10px] text-gray-400">During Album & 4K delivery</p>
+                </div>
+              </div>
+              <span class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 px-2 py-1 rounded">Stage 4</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/5 text-[11px] text-gray-400 text-center">
+          Instant digital GST receipts provided upon each clearance.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 8: DEDICATED CLIENT PROOFING & WATERMARK -->
+  <section id="page-proofing" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Private Portal</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Client Selection & Watermark Protected Proofing</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div id="client-login-card" class="bg-dark-850 border border-white/10 rounded-2xl p-6 md:p-8 max-w-xl mx-auto text-center shadow-2xl">
+      <div class="w-12 h-12 mx-auto rounded-full bg-gold-500/10 border border-gold-400/40 flex items-center justify-center text-gold-400 text-xl mb-4">
+        <i class="fa-solid fa-lock"></i>
+      </div>
+      <h3 class="font-serif text-xl font-bold text-white uppercase tracking-wider">Access Your Event Gallery</h3>
+      <p class="text-xs text-gray-400 mt-1 mb-6">Enter your 4-digit Event Access PIN provided by Creative Memories Studio</p>
+
+      <div class="flex items-center justify-center gap-2 max-w-xs mx-auto mb-4">
+        <input type="password" id="client-passcode" placeholder="Enter PIN (Demo: 2026)" maxlength="6" class="w-full bg-dark-900 border border-white/20 rounded-lg px-4 py-3 text-center text-sm text-gold-400 tracking-widest outline-none focus:border-gold-400 transition">
+        <button onclick="unlockGallery()" class="gold-gradient-btn px-6 py-3 rounded-lg text-xs uppercase tracking-wider font-bold">
+          Unlock
+        </button>
+      </div>
+      <p id="login-error" class="text-[11px] text-red-400 hidden">Invalid PIN! For demo purpose, enter <b>2026</b>.</p>
+    </div>
+
+    <div id="private-gallery-panel" class="hidden space-y-6">
+      <div class="bg-dark-850 border border-white/10 rounded-xl p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2.5 py-1 rounded border border-gold-500/20">Private Event Access</span>
+          <h3 class="font-serif text-xl font-bold text-white mt-1">Rohit & Sneha • Royal Wedding Gallery</h3>
+          <p class="text-xs text-gray-400">Total 320 Raw Photos • Protected with Watermark</p>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs">
+          <div class="bg-dark-900 border border-white/10 px-4 py-2 rounded-lg text-center">
+            <span class="block text-[10px] text-gray-400 uppercase">Selected For Album</span>
+            <span id="selected-counter" class="text-base font-bold text-gold-400">0 / 80 Photos</span>
+          </div>
+          <button onclick="submitAlbumSelection()" class="gold-gradient-btn px-5 py-2.5 rounded-lg text-xs uppercase tracking-wider font-bold">
+            Finalize Album (Submit)
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-dark-850 border border-white/10 rounded-xl overflow-hidden p-3 space-y-3">
+          <div class="relative aspect-[4/3] rounded-lg overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+              <span class="text-white/25 font-black text-xl tracking-[0.3em] -rotate-45 uppercase border border-white/10 px-4 py-1">CREATIVE MEMORIES STUDIO</span>
+            </div>
+            <span class="absolute top-2 left-2 bg-black/70 text-[9px] text-white px-2 py-0.5 rounded font-mono">IMG_0104.RAW</span>
+          </div>
+          <div class="flex items-center justify-between text-xs pt-1">
+            <button onclick="toggleSelectPhoto(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-white/20 hover:border-gold-400 text-gray-300 transition text-[11px]">
+              <i class="fa-regular fa-heart"></i> <span>Select for Album</span>
+            </button>
+            <button onclick="requestTouchup('IMG_0104')" class="text-[11px] text-gold-400 hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Need Retouch
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-dark-850 border border-white/10 rounded-xl overflow-hidden p-3 space-y-3">
+          <div class="relative aspect-[4/3] rounded-lg overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+              <span class="text-white/25 font-black text-xl tracking-[0.3em] -rotate-45 uppercase border border-white/10 px-4 py-1">CREATIVE MEMORIES STUDIO</span>
+            </div>
+            <span class="absolute top-2 left-2 bg-black/70 text-[9px] text-white px-2 py-0.5 rounded font-mono">IMG_0105.RAW</span>
+          </div>
+          <div class="flex items-center justify-between text-xs pt-1">
+            <button onclick="toggleSelectPhoto(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-white/20 hover:border-gold-400 text-gray-300 transition text-[11px]">
+              <i class="fa-regular fa-heart"></i> <span>Select for Album</span>
+            </button>
+            <button onclick="requestTouchup('IMG_0105')" class="text-[11px] text-gold-400 hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Need Retouch
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-dark-850 border border-white/10 rounded-xl overflow-hidden p-3 space-y-3">
+          <div class="relative aspect-[4/3] rounded-lg overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80" class="w-full h-full object-cover">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+              <span class="text-white/25 font-black text-xl tracking-[0.3em] -rotate-45 uppercase border border-white/10 px-4 py-1">CREATIVE MEMORIES STUDIO</span>
+            </div>
+            <span class="absolute top-2 left-2 bg-black/70 text-[9px] text-white px-2 py-0.5 rounded font-mono">IMG_0106.RAW</span>
+          </div>
+          <div class="flex items-center justify-between text-xs pt-1">
+            <button onclick="toggleSelectPhoto(this)" class="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-white/20 hover:border-gold-400 text-gray-300 transition text-[11px]">
+              <i class="fa-regular fa-heart"></i> <span>Select for Album</span>
+            </button>
+            <button onclick="requestTouchup('IMG_0106')" class="text-[11px] text-gold-400 hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-wand-magic-sparkles"></i> Need Retouch
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 9: DEDICATED 100+ CATEGORIES DIRECTORY -->
+  <section id="page-categories100" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Complete 100+ Types Directory</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">15 Main Production Categories</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="flex border-b border-white/10 bg-dark-850 rounded-t-xl text-xs overflow-x-auto">
+      <button onclick="switchCatTab('photo')" id="tab-btn-photo" class="px-5 py-3 font-bold uppercase tracking-wider text-gold-400 border-b-2 border-gold-400 whitespace-nowrap">Photography (15)</button>
+      <button onclick="switchCatTab('video')" id="tab-btn-video" class="px-5 py-3 font-semibold uppercase tracking-wider text-gray-400 hover:text-white whitespace-nowrap">Videography (15)</button>
+      <button onclick="switchCatTab('film')" id="tab-btn-film" class="px-5 py-3 font-semibold uppercase tracking-wider text-gray-400 hover:text-white whitespace-nowrap">Film Making (15)</button>
+      <button onclick="switchCatTab('reels')" id="tab-btn-reels" class="px-5 py-3 font-semibold uppercase tracking-wider text-gray-400 hover:text-white whitespace-nowrap">Reels & Social (15)</button>
+      <button onclick="switchCatTab('editing')" id="tab-btn-editing" class="px-5 py-3 font-semibold uppercase tracking-wider text-gray-400 hover:text-white whitespace-nowrap">Post Production (10)</button>
+    </div>
+
+    <div class="p-6 bg-dark-850 rounded-b-xl border border-white/10 text-xs">
+      <!-- Tab 1: Photography 15 Categories -->
+      <div id="cat-tab-photo" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">01. Wedding Photography</span><p class="text-[11px] text-gray-400 mt-1">Wedding, Pre-Wedding, Engagement, Bridal, Reception, Haldi/Mehendi</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">02. Portrait Photography</span><p class="text-[11px] text-gray-400 mt-1">Portrait, Headshot, Corporate Headshot, Personal Branding</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">03. Family & Kids</span><p class="text-[11px] text-gray-400 mt-1">Family, Maternity, Newborn, Baby, Kids, Graduation</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">04. Fashion & Lifestyle</span><p class="text-[11px] text-gray-400 mt-1">Fashion, Editorial, Lifestyle, Influencer, Social Media, Travel</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">05. Commercial & Ads</span><p class="text-[11px] text-gray-400 mt-1">Commercial, Advertising, Brand, E-commerce, Stock Photography</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">06. Product Photography</span><p class="text-[11px] text-gray-400 mt-1">Product, Food, Beverage, Restaurant Menu, Catalogs</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">07. Event Photography</span><p class="text-[11px] text-gray-400 mt-1">Corporate Events, Concerts, Festivals, Parties, Functions</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">08. Sports Photography</span><p class="text-[11px] text-gray-400 mt-1">Cricket, Football, Fitness, Gym, Athletic Action</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">09. Wildlife & Nature</span><p class="text-[11px] text-gray-400 mt-1">Wildlife, Bird, Nature, Animal Portraits, Conservation</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">10. Landscape & Travel</span><p class="text-[11px] text-gray-400 mt-1">Landscape, Travel, Adventure, Tourism, Cultural</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">11. Street & Documentary</span><p class="text-[11px] text-gray-400 mt-1">Street, Documentary, Photojournalism, News</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">12. Real Estate & Architecture</span><p class="text-[11px] text-gray-400 mt-1">Real Estate, Architecture, Interior, Exterior, Hotels, Resorts</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">13. Drone & Aerial</span><p class="text-[11px] text-gray-400 mt-1">Drone, Aerial, Property Drone Shoots, Survey Photography</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">14. Automotive Photography</span><p class="text-[11px] text-gray-400 mt-1">Cars, Bikes, Aviation, Railways, Boats, Marine</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">15. Creative & Specialized</span><p class="text-[11px] text-gray-400 mt-1">Fine Art, Astrophotography, Underwater, Macro, Black & White</p></div>
+      </div>
+
+      <!-- Tab 2: Videography -->
+      <div id="cat-tab-video" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">01. Wedding Videography</span><p class="text-[11px] text-gray-400 mt-1">Cinematic Wedding, Teasers, Sangeet, Haldi, Full Coverage</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">02. Event Videography</span><p class="text-[11px] text-gray-400 mt-1">Conferences, Live Stream, School/College Functions, Festivals</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">03. Corporate Videography</span><p class="text-[11px] text-gray-400 mt-1">Company Profile, Training Videos, Recruitment, CSR</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">04. Commercial & Ads</span><p class="text-[11px] text-gray-400 mt-1">TVC, Digital Ads, Product Launch, Sales Promotion</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">05. Brand Storytelling</span><p class="text-[11px] text-gray-400 mt-1">Brand Films, Customer Testimonials, Founders Journey</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">06. Real Estate Walkthroughs</span><p class="text-[11px] text-gray-400 mt-1">Luxury Villa Tours, Resort Walkthroughs, Drone Mapping</p></div>
+      </div>
+
+      <!-- Tab 3: Film Making -->
+      <div id="cat-tab-film" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">Feature & Short Films</span><p class="text-[11px] text-gray-400 mt-1">Drama, Indie Films, Romance, Thriller, Comedy</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">Documentaries</span><p class="text-[11px] text-gray-400 mt-1">Biographical, Nature, Travel, Historical, Investigative</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">Music & Performance</span><p class="text-[11px] text-gray-400 mt-1">Music Videos, Concert Films, Acoustic Sessions, Lyric Videos</p></div>
+      </div>
+
+      <!-- Tab 4: Reels & Social -->
+      <div id="cat-tab-reels" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">Wedding & Event Reels</span><p class="text-[11px] text-gray-400 mt-1">Viral Teasers, Groom/Bride Entry, Emotional Moments, Haldi Trends</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">Business & Brand Content</span><p class="text-[11px] text-gray-400 mt-1">BTS, Product Showcase, Customer Reviews, Fast Transitions</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">Fashion & Lifestyle Reels</span><p class="text-[11px] text-gray-400 mt-1">Model Portfolios, Outfit Changes, Makeup & Beauty Transformations</p></div>
+      </div>
+
+      <!-- Tab 5: Post Production -->
+      <div id="cat-tab-editing" class="hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5">
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">01. Photo & Skin Retouch</span><p class="text-[11px] text-gray-400 mt-1">High-end Beauty, Frequency Separation, Background Manipulation</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">02. Video Color Grading</span><p class="text-[11px] text-gray-400 mt-1">DaVinci Resolve Cinematic Looks, HDR Grading, LUT Creation</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">03. VFX, CGI & Motion Graphics</span><p class="text-[11px] text-gray-400 mt-1">3D Tracking, Logo Animation, Typography, Compositing</p></div>
+        <div class="p-3.5 bg-dark-900 rounded-lg border border-white/5"><span class="text-gold-400 font-bold">04. AI Editing & Restoration</span><p class="text-[11px] text-gray-400 mt-1">Old Photo Restoration, AI Upscaling, Automated Object Removal</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUB-PAGE 10: DEDICATED CONTACT PAGE -->
+  <section id="page-contact" class="page-view py-12 px-4 md:px-8 max-w-7xl mx-auto">
+    <div class="flex items-center justify-between mb-8 border-b border-white/10 pb-4">
+      <div>
+        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold bg-gold-500/10 px-2 py-0.5 rounded">Studio Location</span>
+        <h2 class="font-serif text-2xl font-bold text-white uppercase mt-1">Contact Studio & Inquiry</h2>
+      </div>
+      <button onclick="navigateTo('page-home')" class="gold-border-btn px-4 py-1.5 text-xs font-bold uppercase rounded flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-dark-850 p-6 md:p-10 rounded-2xl border border-white/10">
+      <div class="space-y-6">
+        <div>
+          <h3 class="font-serif text-xl font-bold text-white uppercase">Creative Memories Studio</h3>
+          <p class="text-xs text-gray-400 mt-1">Founder: Avinash Ramchandra Sananse</p>
+        </div>
+        <div class="space-y-4 text-xs">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-phone text-gold-400 text-base"></i>
+            <div><p class="font-bold text-white">+91 88065 67350</p><p class="text-gray-400 text-[10px]">Direct Call & WhatsApp</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-envelope text-gold-400 text-base"></i>
+            <div><p class="font-bold text-white">hello@creativememories.studio</p><p class="text-gray-400 text-[10px]">Inquiries & Bookings</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-location-dot text-gold-400 text-base"></i>
+            <div><p class="font-bold text-white">Chhatrapati Sambhajinagar (Aurangabad), Maharashtra</p><p class="text-gray-400 text-[10px]">India</p></div>
+          </div>
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-clock text-gold-400 text-base"></i>
+            <div><p class="font-bold text-white">Monday - Sunday : 9:00 AM - 8:00 PM</p><p class="text-gray-400 text-[10px]">Available 7 Days</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-900 p-6 rounded-xl border border-white/10 space-y-4 text-xs">
+        <h4 class="font-serif text-base font-bold text-white uppercase">Quick Shoot Inquiry</h4>
+        <input type="text" id="contact-name" placeholder="Your Name" class="w-full bg-dark-850 border border-white/10 p-3 rounded text-white outline-none focus:border-gold-400">
+        <input type="tel" id="contact-phone" placeholder="Your Phone Number" class="w-full bg-dark-850 border border-white/10 p-3 rounded text-white outline-none focus:border-gold-400">
+        <textarea id="contact-msg" rows="3" placeholder="Tell us about your shoot date and requirements..." class="w-full bg-dark-850 border border-white/10 p-3 rounded text-white outline-none focus:border-gold-400"></textarea>
+        <button onclick="submitContactForm()" class="w-full gold-gradient-btn py-3 rounded uppercase font-bold text-xs tracking-wider">
+          Send Message via WhatsApp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL FOOTER (Exact Mockup Match - Shown at bottom of all pages) -->
+  <footer class="bg-dark-950 py-12 px-4 md:px-8 border-t border-white/10 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+      
+      <!-- Col 1: Logo & Tagline -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-camera-retro text-gold-400 text-2xl"></i>
+          <div>
+            <div class="font-serif text-sm font-extrabold uppercase text-white tracking-wider">Creative <span class="text-gold-400">Memories</span></div>
+            <div class="text-[8px] tracking-[0.35em] text-gray-400 uppercase -mt-0.5">S T U D I O</div>
+          </div>
+        </div>
+        <p class="text-[11px] text-gray-400 leading-relaxed italic">Capturing Moments.<br>Creating Memories.<br>Telling Stories.</p>
+      </div>
+
+      <!-- Col 2: QUICK LINKS -->
+      <div class="space-y-2">
+        <h4 class="font-serif text-xs font-bold text-white uppercase tracking-wider mb-3">Quick Links</h4>
+        <div class="grid grid-cols-2 gap-2 text-[11px] text-gray-400">
+          <button onclick="navigateTo('page-home')" class="text-left hover:text-gold-400">Home</button>
+          <button onclick="navigateTo('page-booking')" class="text-left hover:text-gold-400">Book Now</button>
+          <button onclick="navigateTo('page-portfolio')" class="text-left hover:text-gold-400">Portfolio</button>
+          <button onclick="navigateTo('page-contact')" class="text-left hover:text-gold-400">Contact Us</button>
+          <button onclick="navigateTo('page-films')" class="text-left hover:text-gold-400">Films</button>
+          <button onclick="navigateTo('page-proofing')" class="text-left hover:text-gold-400">Client Login</button>
+          <button onclick="navigateTo('page-reels')" class="text-left hover:text-gold-400">Reels</button>
+          <button onclick="navigateTo('page-booking')" class="text-left hover:text-gold-400">Pricing</button>
+        </div>
+      </div>
+
+      <!-- Col 3: SERVICES -->
+      <div class="space-y-2">
+        <h4 class="font-serif text-xs font-bold text-white uppercase tracking-wider mb-3">Services</h4>
+        <div class="space-y-1 text-[11px] text-gray-400">
+          <button onclick="navigateTo('page-services')" class="text-left block hover:text-gold-400">Photography</button>
+          <button onclick="navigateTo('page-services')" class="text-left block hover:text-gold-400">Videography</button>
+          <button onclick="navigateTo('page-films')" class="text-left block hover:text-gold-400">Film Production</button>
+          <button onclick="navigateTo('page-reels')" class="text-left block hover:text-gold-400">Reels & Shorts</button>
+          <button onclick="navigateTo('page-services')" class="text-left block hover:text-gold-400">Editing & Post</button>
+          <button onclick="navigateTo('page-services')" class="text-left block hover:text-gold-400">Drone Services</button>
+          <button onclick="navigateTo('page-services')" class="text-left block hover:text-gold-400">Branding & Design</button>
+        </div>
+      </div>
+
+      <!-- Col 4: FOLLOW US -->
+      <div class="space-y-3">
+        <h4 class="font-serif text-xs font-bold text-white uppercase tracking-wider mb-3">Follow Us</h4>
+        <div class="flex items-center gap-3">
+          <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-black flex items-center justify-center transition text-xs"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-black flex items-center justify-center transition text-xs"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-gold-500 hover:text-black flex items-center justify-center transition text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://wa.me/918806567350" target="_blank" class="w-8 h-8 rounded-full bg-white/5 hover:bg-emerald-500 hover:text-white flex items-center justify-center transition text-xs"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p class="text-[10px] text-gray-500 mt-4">One Vision. One Brand. Complete Creative Solution.</p>
+      </div>
+
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-gray-500 gap-2">
+      <p>© 2026 Creative Memories Studio. All Rights Reserved.</p>
+      <p>Designed with <span class="text-red-500">♥</span> by Creative Memories Studio</p>
+    </div>
+  </footer>
+
+  <!-- Script File Link -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
